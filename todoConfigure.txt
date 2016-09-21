@@ -1,0 +1,10 @@
+TODO list
+---------
+
+-- COLORS --
+- Make Nerdtree grayscale and brighness down when it is not in focus.
+
+
+-- i3 -- 
+- Open programs when starting up on specific position and workspace
+
