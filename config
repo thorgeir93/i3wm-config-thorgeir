@@ -54,10 +54,10 @@ bindsym $mod+d exec rofi -show run -lines 5 -columns 1 -eh 3 -fullscreen -paddin
 # installed.
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ae focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -81,7 +81,7 @@ bindsym $mod+Shift+Right move right
 #bindsym $mod+p exec i3lock
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -249,11 +249,6 @@ bar {
 bindsym $mod+shift+s exec i3lock -c 000000 && exec systemctl suspend
 
 
-#############
-# Setxkbmap #
-bindsym $mod+Shift+u exec setxkbmap us
-bindsym $mod+Shift+i exec setxkbmap is
-
 ##########################
 ## Pulse Audio controls ##
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -265,8 +260,8 @@ bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 ###############################
 ## Sreen brightness controls ##
-bindsym XF86MonBrightnessUp exec bash /home/thorgeir/.config/i3/microprograms/bright_up.sh #xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec bash /home/thorgeir/.config/i3/microprograms/bright_down.sh #xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/thorgeir/.config/i3/microprograms/bright_up.sh #xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/thorgeir/.config/i3/microprograms/bright_down.sh #xbacklight -dec 20 # decrease screen brightness
 
 #######################
 ## Touchpad controls ##
@@ -304,6 +299,7 @@ set $MINI /home/thorgeir/.config/i3/microprograms
 
 bindsym $mod+Shift+Return exec $MINI/open_urxvt.sh
 bindsym --release Print exec --no-startup-id python /home/thorgeir/.config/i3/screenshot.py
+bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 #bindsym Print exec $MINI/screenshot_grap.sh
 
 
@@ -356,4 +352,16 @@ exec --no-startup-id nm-applet
 
 exec_always feh --bg-scale /home/thorgeir/Pictures/Wallpapers/a.jpg
 
+bindsym $mod+Shift+h exec xrandr --output LVDS1 --auto --output HDMI1 --auto --right-of LVDS1
+                        #xdrandr --output LVDS1 --auto --output HDMI1 --auto --right-of LVDS1
 
+#############
+# Setxkbmap #
+bindsym $mod+Shift+u exec setxkbmap us
+bindsym $mod+Shift+i exec setxkbmap is
+
+#################
+## INFORMATION ##
+#bindsym $mod+Alt_L+b exec "bash /home/thorgeir/.config/i3/microprograms/notify_battery.sh"
+bindcode 133+64+56 exec /home/thorgeir/.config/i3/microprograms/notify_battery.sh
+#notify-send -h string:bgcolor:#222222 -h string:fgcolor:#ff4444 "AMMA"
