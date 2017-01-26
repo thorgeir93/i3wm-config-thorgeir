@@ -12,10 +12,8 @@
 
 #############
 #MAIN BUTTON#
-set $mod Mod4
-
-
-
+set $mod Mod1
+set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -66,10 +64,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ae move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -124,21 +122,21 @@ set $wF4 "F4:i3 Configuration"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
-bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace $w2
-bindsym $mod+3 workspace $w3
-bindsym $mod+4 workspace $w4
-bindsym $mod+5 workspace $w5
-bindsym $mod+6 workspace $w6
-bindsym $mod+7 workspace $w7
-bindsym $mod+8 workspace $w8
-bindsym $mod+9 workspace $w9
-bindsym $mod+0 workspace $w10
-bindsym $mod+F1 workspace $wF1
-bindsym $mod+F2 workspace $wF2
-bindsym $mod+F3 workspace $wF3
-bindsym $mod+F4 workspace $wF4
-bindsym $mod+F10 workspace $wF10
+bindsym $mod+1 workspace $w1  exec `xcalib -clear -alter`
+bindsym $mod+2 workspace $w2 exec `xcalib -clear -alter`
+bindsym $mod+3 workspace $w3 exec `xcalib -clear -alter`
+bindsym $mod+4 workspace $w4  exec `xcalib -clear -alter`
+bindsym $mod+5 workspace $w5 exec `xcalib -clear -alter`
+bindsym $mod+6 workspace $w6 exec `xcalib -clear -alter`
+bindsym $mod+7 workspace $w7 exec `xcalib -clear -alter`
+bindsym $mod+8 workspace $w8 exec `xcalib -clear -alter`
+bindsym $mod+9 workspace $w9 exec `xcalib -clear -alter`
+bindsym $mod+0 workspace $w10 exec `xcalib -invert -a`
+bindsym $mod+F1 workspace $wF1 exec `xcalib -clear -alter`
+bindsym $mod+F2 workspace $wF2 exec `xcalib -clear -alter`
+bindsym $mod+F3 workspace $wF3 exec `xcalib -clear -alter`
+bindsym $mod+F4 workspace $wF4 exec `xcalib -clear -alter`
+bindsym $mod+F10 workspace $wF10 exec `xcalib -clear -alter`
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -170,7 +168,7 @@ workspace $w6 output $screen_2
 workspace $w7 output $screen_2
 workspace $w8 output $screen_2
 workspace $w9 output $screen_2
-workspace $w10 output $screen_2
+workspace $w10 output $screen_1
 workspace $wF1 output $screen_1
 workspace $wF2 output $screen_1
 workspace $wF3 output $screen_2
@@ -258,6 +256,9 @@ bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound
 bindsym $mod+F7 exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# Middle mouse click
+bindsym $mod+m exec --no-startup-id python /home/thorgeir/.config/i3/microprograms/click_middle_button.py #xbacklight -inc 20 # increase screen brightness
+
 ###############################
 ## Sreen brightness controls ##
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/thorgeir/.config/i3/microprograms/bright_up.sh #xbacklight -inc 20 # increase screen brightness
@@ -282,7 +283,10 @@ bindsym $mod+F11 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spo
 # Next track 
 bindsym $mod+F12 exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
-
+##
+## INVERT SCREEN COLORS
+##
+bindsym $mod+i exec `xcalib -invert -alter`
 
 
 ######################
@@ -349,10 +353,10 @@ bindsym $mod+Shift+e mode "$mode_system"
 ####################
 # Startup programs #
 exec --no-startup-id nm-applet
-
+#exec --no-startup-id i3-msg "exec xmodmap ~/.speedswapper"
 exec_always feh --bg-scale /home/thorgeir/Pictures/Wallpapers/a.jpg
 
-bindsym $mod+Shift+h exec xrandr --output LVDS1 --auto --output HDMI1 --auto --right-of LVDS1
+#bindsym $mod+Shift+h exec xrandr --output LVDS1 --auto --output HDMI1 --auto --right-of LVDS1
                         #xdrandr --output LVDS1 --auto --output HDMI1 --auto --right-of LVDS1
 
 #############
