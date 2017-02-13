@@ -361,8 +361,9 @@ exec_always feh --bg-scale /home/thorgeir/Pictures/Wallpapers/a.jpg
 
 #############
 # Setxkbmap #
-bindsym $mod+Shift+u exec setxkbmap us
-bindsym $mod+Shift+i exec setxkbmap is
+#bindsym $mod+Shift+u exec setxkbmap us
+bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
+bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 
 #################
 ## INFORMATION ##
