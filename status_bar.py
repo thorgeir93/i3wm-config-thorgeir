@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from i3pystatus import Status
 from custom_status_bar.keyboard_layout import Xkblayout
+from custom_status_bar.battery import BatteryStatus
 
 status = Status()
 
 status.register(Xkblayout)
+status.register(BatteryStatus)
+
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
@@ -45,8 +48,6 @@ status.register("network",
     divisor=1048576,
     round_size=2,
     )
-
-
 
 #status.register(
 #    'battery',
