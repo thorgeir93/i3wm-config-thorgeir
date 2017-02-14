@@ -166,7 +166,9 @@ bindsym $mod+Shift+F10 move container to workspace $wF10
 set $screen_1 HDMI-1
 set $screen_2 HDMI-3
 
-#set $screen_1 `screen_1.sh`
+#set $screen_1 exec `bash $MINI/screen_1.sh"`
+#set $screen_2 exec `bash $MINI/screen_2.sh`
+#bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 
 #set $user `uname -n`
 
@@ -270,7 +272,7 @@ bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound
 bindsym $mod+F7 exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-exec_always amixer set Master 50% on
+#exec_always amixer set Master 50% on
 
 # Middle mouse click
 bindsym $mod+m exec --no-startup-id python /home/thorgeir/.config/i3/microprograms/click_middle_button.py #xbacklight -inc 20 # increase screen brightness
@@ -375,6 +377,13 @@ exec --no-startup-id nm-applet
 #bindsym $mod+Shift+u exec setxkbmap us
 bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
 bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
+
+
+#
+# PASTE VIM CONFIG
+#
+bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
+#bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
 #################
 ## INFORMATION ##
