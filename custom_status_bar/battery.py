@@ -18,8 +18,11 @@ class BatteryStatus(IntervalModule):
     def run(self):
         file_capacity = os.path.join(self.base_path, self.battery_folder, self.capacity)
         res = '0'
-        with open(file_capacity, 'r') as f:
-            res = f.readlines()[0].split('\n')[0]
+        try:
+            with open(file_capacity, 'r') as f:
+                res = f.readlines()[0].split('\n')[0]
+        except FileNotFoundError:
+            res = '100' 
 
         num = int( res )
         
@@ -35,16 +38,23 @@ class BatteryStatus(IntervalModule):
         status={
             "DIS": "↓",
             "CHA": "↑",
-            "FULL": "=",
+            "FUL": "=",
         }
 
         file_status = os.path.join(self.base_path, self.battery_folder, self.status)
-        with open(file_status, 'r') as f:
-            res = f.readlines()[0].split('\n')[0]
-    
+
+        try:
+            with open(file_status, 'r') as f:
+                res = f.readlines()[0].split('\n')[0]
+        except FileNotFoundError:
+            res = 'FULL' 
+
         symbol = status[ res[0:3].upper() ]
         
         full_text = self.format.format(symbol=symbol, battery=str(num))
+
+        if full_text == '=100':
+            full_text = '-O=' 
 
         self.output = {
             'full_text': full_text, #full_text,
