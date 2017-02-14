@@ -16,7 +16,8 @@ status.register("clock",
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-status.register("load")
+status.register("load") # cpu
+status.register("mem_bar") # Memory usage
 
 # Shows your CPU temperature, if you have a Intel CPU
 status.register("temp",
@@ -31,6 +32,13 @@ status.register("runwatch",
 status.register("network",
     interface="wlp2s0",
     format_up="wifi: {v4cidr} {kbs} MB/s ",
+    divisor=1048576,
+    round_size=2,
+    )
+
+status.register("network",
+    interface="eth0",
+    format_up="eth0: {v4cidr} {kbs} MB/s ",
     divisor=1048576,
     round_size=2,
     )
