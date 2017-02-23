@@ -1,0 +1,2 @@
+#!/bin/sh
+google-chrome --proxy-pac-url="http://jira-proxy.mordor.local/proxy.pac"
