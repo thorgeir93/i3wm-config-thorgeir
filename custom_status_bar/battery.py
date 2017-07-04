@@ -5,7 +5,7 @@ import os
 
 class BatteryStatus(IntervalModule):
     """ Displays and changes current battery. """
-    interval = 1
+    interval = 10
     format = u"{symbol}{battery}"
     uppercase = True
     settings = (("format", "Format string"),)
