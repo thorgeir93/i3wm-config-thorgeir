@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# TODO find out where i got this script ! 
+
 """ Use in i3wm with:
 Save as screeshot.py somewhere into your PATH
 bindsym --release Print exec --no-startup-id screenshot.py
 """
-
 
 import os
 from subprocess import Popen, PIPE
