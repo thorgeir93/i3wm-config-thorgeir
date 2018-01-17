@@ -102,25 +102,25 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
 
-set $w1 "1:Terminals"
-set $w2 "2:Chrome"
-set $w3 "3:Workspace"
-set $w4 "4:Workspace"
-set $w5 "5:Workspace"
-set $w6 "6:Terminals"
-set $w7 "7:Chrome"
-set $w8 "8:Workspace"
-set $w9 "9:Workspace"
-set $w10 "10:Mysql Workbench"
-set $wF1 "F1:SQL"
-set $wF2 "F2:"
-set $wF3 "F3:"
-set $wF4 "F4:i3 Configuration"
+set $w1 "1"
+set $w2 "2:Cuckoo"
+set $w3 "3:Payload"
+set $w4 "4"
+set $w5 "5"
+set $w6 "6:Main"
+set $w7 "7:Query"
+set $w8 "8:Logs"
+set $w9 "9:PDF"
+set $w10 "0:Slack"
+set $wF1 "F1"
+set $wF2 "F2"
+set $wF3 "F3"
+set $wF4 "F4:TODO"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
@@ -133,7 +133,9 @@ bindsym $mod+6 workspace $w6;  exec `xcalib -clear -alter`
 bindsym $mod+7 workspace $w7;  exec `xcalib -clear -alter`
 bindsym $mod+8 workspace $w8;  exec `xcalib -clear -alter`
 bindsym $mod+9 workspace $w9;  exec `xcalib -clear -alter`
-bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
+bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter`
+#xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
+#bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :1 && xcalib -clear -alter -display :2 && xcalib -contrast 90 -invert -alter -display :3`
 
 bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
 bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
@@ -165,6 +167,7 @@ bindsym $mod+Shift+F10 move container to workspace $wF10
 
 set $screen_1 HDMI-1
 set $screen_2 HDMI-3
+set $screen_3 DP-1
 
 #set $screen_1 exec `bash $MINI/screen_1.sh"`
 #set $screen_2 exec `bash $MINI/screen_2.sh`
@@ -180,16 +183,16 @@ workspace $w5 output $screen_1
 
 workspace $w6 output $screen_2
 workspace $w7 output $screen_2
-workspace $w8 output $screen_2
+workspace $w8 output $screen_3
 workspace $w9 output $screen_2
+workspace $w10 output $screen_3
 
-workspace $w10 output $screen_2
+#workspace $w10 output $screen_2
 workspace $wF1 output $screen_1
 workspace $wF2 output $screen_1
 
 workspace $wF3 output $screen_2
 workspace $wF4 output $screen_2
-workspace $wF10 output $screen_2
 
 #exec --no-startup-id "i3-msg 'workspace F10:Spotify; append_layout /home/thorgeir/.config/i3/workspace_F1.json'"
 #
@@ -308,6 +311,7 @@ bindsym $mod+i exec `xcalib -invert -alter`
 
 ## WINDOW
 ##
+# To disable the header.
 #new_window pixel
 
 
@@ -327,9 +331,9 @@ bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 ############
 ## COLORS ##
 set $main-theme-color #305054
-#set $bg-color #305054
-set $bg-color #141E27
+set $bg-color #002233
 set $bd-color $bg-color
+set $title-border #005577
 set $unfocus  $bg-color
 set $UF_border $bg-color
 set $child_brdr $UF_border
@@ -339,13 +343,26 @@ set $PH_ind #ff0000
 set $FC_indi $bg-color
 set $FC_child_b $bg-color
 
+# `child_border` is the thin line around the window.
 # class                 border  	backgr. 	text    	indicator 	child_border
-client.focused          $bd-color 	$bg-color 	#ffffff 	$FC_indi   	$bg-color
-client.focused_inactive $UF_border 	$unfocus 	#484e50   	$FC_indi	$FC_child_b
-client.unfocused        $UF_border 	$unfocus 	#888888 	$UN_indi   	$child_brdr
-client.urgent           #2f343a 	#900000 	#ffffff 	#900000   	#900000
+#client.focused          $bd-color 	$bg-color 	#ffffff 	$FC_indi   	$000000
+#client.focused_inactive $UF_border 	$unfocus 	#484e50   	$FC_indi	$FC_child_b
+#client.unfocused        $UF_border 	$unfocus 	#888888 	$UN_indi   	$child_brdr
+#client.urgent           #2f343a 	#900000 	#ffffff 	#900000   	#900000
 client.placeholder      $PH_border 	#0c0c0c 	#ffffff 	$PH_indi   	#0c0c0c
-client.background       #ffffff
+#client.background       #ffffff
+
+client.background       #000000
+client.focused          $title-border $bg-color #ffffff #2e9ef4
+client.focused_inactive #333333 #222222 #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+#client.background       #000000
+##client.focused          #ffffff #ffffff #ffffff #ffffff
+#client.focused_inactive #ffffff #ffffff #ffffff #ffffff
+#client.unfocused        #ffffff #ffffff #ffffff #ffffff
+#client.urgent           #ffffff #ffffff #ffffff #ffffff
 
 exec_always --no-startup-id xinput set-prop " ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 0.35
 
@@ -373,14 +390,13 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id i3-msg "exec xmodmap ~/.speedswapper"
 
 # Start desktop wallpaper.
-exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
+exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
 
 # Reload the config file for the urxvt terminal.
 exec_always xrdb ~/.Xdefaults
 
 # Change the keyboard language to english.
 exec "bash $MINI/lang.sh us"
-
 
 # is a composite manager (for windows)
 # capable of rednering drop shadow and
