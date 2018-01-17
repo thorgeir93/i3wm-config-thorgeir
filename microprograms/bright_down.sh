@@ -1,6 +1,6 @@
-brightness=$(cat /sys/class/backlight/ideapad/brightness)
+brightness=$(cat /sys/class/backlight/*/brightness)
 
 if (("$brightness" > "0")); then
-  let brightness=$brightness-1
-  echo "echo $brightness > /sys/class/backlight/ideapad/brightness" | sudo bash
+  let brightness=$brightness-65
+  echo "echo $brightness > /sys/class/backlight/*/brightness" | sudo bash
 fi

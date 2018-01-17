@@ -6,13 +6,14 @@ from custom_status_bar.battery import BatteryStatus
 status = Status()
 
 status.register(Xkblayout)
-status.register(BatteryStatus)
 
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
 status.register("clock",
         format="%a %-d %b %H:%M:%S",)
+
+status.register(BatteryStatus)
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -30,32 +31,43 @@ status.register("runwatch",
 
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-    interface="wlp2s0",
+    interface="wlp3s0",
     format_up="wifi: {v4cidr} {kbs} MB/s ",
     divisor=1048576,
     round_size=2,
     )
 
 status.register("network",
-    interface="eth0",
-    format_up="eth0: {v4cidr} {kbs} MB/s ",
+    interface="enp0s31f6",
+    format_up="Ethernet: {v4cidr} {kbs} MB/s ",
     divisor=1048576,
     round_size=2,
     )
 
-status.register("network",
-    interface="tun0",
-    format_up="tun0: {v4cidr} {kbs} MB/s ",
-    divisor=1048576,
-    round_size=2,
-    )
+# Shows pulseaudio default sink volume
+#
+# Note: requires libpulseaudio from PyPI
+#status.register("pulseaudio",
+#    format="♪{volume}",)
+status.register("alsa",
+    format="♪{volume}",)
 
-status.register("network",
-    interface="virbr0",
-    format_up="virbr0: {v4cidr} {kbs} MB/s ",
-    divisor=1048576,
-    round_size=2,
-    )
+
+
+
+#status.register("network",
+#    interface="tun0",
+#    format_up="tun0: {v4cidr} {kbs} MB/s ",
+#    divisor=1048576,
+#    round_size=2,
+#    )
+
+#status.register("network",
+#    interface="virbr0",
+#    format_up="virbr0: {v4cidr} {kbs} MB/s ",
+#    divisor=1048576,
+#    round_size=2,
+#    )
 
 #status.register(
 #    'battery',
@@ -87,12 +99,5 @@ status.register("network",
 #status.register("disk",
 #    path="/",
 #    format="/ {avail}",)
-
-# Shows pulseaudio default sink volume
-#
-# Note: requires libpulseaudio from PyPI
-status.register("pulseaudio",
-    format="♪{volume}",)
-
 
 status.run()
