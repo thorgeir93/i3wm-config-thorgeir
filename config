@@ -102,39 +102,45 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
 
-set $w1 "1:Terminals"
-set $w2 "2:Chrome"
-set $w3 "3:Workspace"
-set $w4 "4:Workspace"
-set $w5 "5:Workspace"
-set $w6 "6:Terminals"
-set $w7 "7:Chrome"
-set $w8 "8:Workspace"
-set $w9 "9:Workspace"
-set $w10 "10:Mysql Workbench"
-set $wF1 "F1:SQL"
-set $wF2 "F2:"
-set $wF3 "F3:"
-set $wF4 "F4:i3 Configuration"
+set $w1 "1"
+set $w2 "2"
+set $w3 "3"
+set $w4 "4"
+set $w5 "5"
+set $w6 "6"
+set $w7 "7"
+set $w8 "8"
+set $w9 "9"
+set $w10 "0:Invert"
+set $wF1 "F1"
+set $wF2 "F2"
+set $wF3 "F3"
+set $wF4 "F4"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
-bindsym $mod+1 workspace $w1;  exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+2 workspace $w2;  exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+3 workspace $w3;  exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+4 workspace $w4;  exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+5 workspace $w5;  exec `xcalib -clear -alter -display :0.1`
+bindsym $mod+1 workspace $w1;  exec `xcalib -clear -alter`
+bindsym $mod+2 workspace $w2;  exec `xcalib -clear -alter`
+bindsym $mod+3 workspace $w3;  exec `xcalib -clear -alter`
+bindsym $mod+4 workspace $w4;  exec `xcalib -clear -alter`
+bindsym $mod+5 workspace $w5;  exec `xcalib -clear -alter`
+
+#bindsym $mod+1 workspace $w1;  exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+2 workspace $w2;  exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+3 workspace $w3;  exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+4 workspace $w4;  exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+5 workspace $w5;  exec `xcalib -clear -alter -display :0.1`
+#
 bindsym $mod+6 workspace $w6;  exec `xcalib -clear -alter`
 bindsym $mod+7 workspace $w7;  exec `xcalib -clear -alter`
 bindsym $mod+8 workspace $w8;  exec `xcalib -clear -alter`
 bindsym $mod+9 workspace $w9;  exec `xcalib -clear -alter`
 bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
-
 bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
 bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
 bindsym $mod+F3 workspace $wF3; exec `xcalib -clear -alter`
@@ -256,7 +262,7 @@ bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     #font pango:FontAwesome 7, FontAwesome 7
     font pango:monospace 7.5
-    status_command      python3 /home/thorgeir/.config/i3/status_bar.py
+    status_command      python3.4 /home/thorgeir/.config/i3/status_bar.py
     position            bottom
     workspace_buttons   yes
 }
@@ -265,22 +271,46 @@ bindsym $mod+shift+s exec i3lock -c 000000 && exec systemctl suspend
 
 ##########################
 ## Pulse Audio controls ##
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym $mod+F7 exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#
+# Use Pactl
+#
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym $mod+F7 exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym $mod+F5 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Use Amixer
+# 
+# increase sound volume (for work-laptop)
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 set Master 2dB+  
+# decrease sound volume (for work-laptop)
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 set Master 2dB-
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
+
+# increase sound volume (for work-laptop)
+bindsym $mod+F8 exec --no-startup-id amixer -c 0 set Master 2dB+  
+# decrease sound volume (for work-laptop)
+bindsym $mod+F7 exec --no-startup-id amixer -c 0 set Master 2dB-
+bindsym $mod+F5 exec --no-startup-id amixer -D pulse set Master 1+ toggle
+
+#
+# sudo yum install dbus-devel
+# sudo yum install dbus-glib-devel
+# sudo pip3 install dbus-python
+# sudo yum install upower
+# sudo yum install python34-ipython_genutils (just extra)
 
 #exec_always amixer set Master 50% on
 
 # Middle mouse click
-bindsym $mod+m exec --no-startup-id python /home/thorgeir/.config/i3/microprograms/click_middle_button.py #xbacklight -inc 20 # increase screen brightness
+bindsym $mod+m exec --no-startup-id python /home/thorgeir/.config/i3/microprograms/click_middle_button.py 
+#xbacklight -inc 20 # increase screen brightness
 
 ###############################
 ## Sreen brightness controls ##
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/thorgeir/.config/i3/microprograms/bright_up.sh #xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/thorgeir/.config/i3/microprograms/bright_down.sh #xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec bash /home/thorgeir/.config/i3/microprograms/brightness.sh UP #xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec bash /home/thorgeir/.config/i3/microprograms/brightness.sh DOWN #xbacklight -dec 20 # decrease screen brightness
 
 #######################
 ## Touchpad controls ##
@@ -327,8 +357,9 @@ bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 ############
 ## COLORS ##
 set $main-theme-color #305054
+set $bg-color #223355
 #set $bg-color #305054
-set $bg-color #141E27
+#set $bg-color #141E27
 set $bd-color $bg-color
 set $unfocus  $bg-color
 set $UF_border $bg-color
@@ -340,23 +371,25 @@ set $FC_indi $bg-color
 set $FC_child_b $bg-color
 
 # class                 border  	backgr. 	text    	indicator 	child_border
-client.focused          $bd-color 	$bg-color 	#ffffff 	$FC_indi   	$bg-color
-client.focused_inactive $UF_border 	$unfocus 	#484e50   	$FC_indi	$FC_child_b
-client.unfocused        $UF_border 	$unfocus 	#888888 	$UN_indi   	$child_brdr
+client.focused          $bg-color     $bg-color 	#ffffff 	$FC_indi   	$bg-color
+#client.focused          $bd-color 	$bg-color 	#ffffff 	$FC_indi   	$bg-color
+#client.focused_inactive $UF_border 	$unfocus 	#484e50   	$FC_indi	$FC_child_b
+#client.unfocused        $UF_border 	$unfocus 	#888888 	$UN_indi   	$child_brdr
 client.urgent           #2f343a 	#900000 	#ffffff 	#900000   	#900000
 client.placeholder      $PH_border 	#0c0c0c 	#ffffff 	$PH_indi   	#0c0c0c
 client.background       #ffffff
 
-exec_always --no-startup-id xinput set-prop " ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 0.35
+#exec_always --no-startup-id xinput set-prop " ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 0.35
 
-set $Locker i3lock --color 111111 && sleep 1
+#set $Locker i3lock --color 111111 && sleep 1
+#set $Locker $MINI/i3lock.sh
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id $MINI/i3lock.sh, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id $MINI/i3lock.sh && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $MINI/i3lock.sh && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
