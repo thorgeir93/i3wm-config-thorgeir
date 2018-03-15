@@ -1,0 +1,8 @@
+#!/bin/sh
+get_slack_win_id () {
+    xwininfo -name "Slack - CYREN" | head -n 2 | tail -n 1 | awk '{ print $4; }'
+}
+
+slack &
+sleep 8 && transset-df --id `get_slack_win_id` 0.94 &
+
