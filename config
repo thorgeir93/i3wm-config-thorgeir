@@ -349,7 +349,8 @@ bindsym $mod+i exec `xcalib -invert -alter`
 # the currently 
 # foucused program
 
-bindsym $mod+Shift+Return exec $MINI/open_urxvt.sh
+#bindsym $mod+Shift+Return exec $MINI/open_urxvt.sh
+bindsym $mod+Shift+Return exec chromium-browser --app=http://duckduckgo.com
 bindsym --release Print exec --no-startup-id python /home/thorgeir/.config/i3/screenshot.py
 bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 #bindsym Print exec $MINI/screenshot_grap.sh
@@ -358,6 +359,7 @@ bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 ## COLORS ##
 set $main-theme-color #305054
 set $bg-color #223355
+#set $bg-color #ffffff
 #set $bg-color #305054
 #set $bg-color #141E27
 set $bd-color $bg-color
