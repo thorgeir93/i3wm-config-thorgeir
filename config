@@ -203,8 +203,8 @@ workspace $wF4 output $screen_2
 # Find out the class name by running `xprop`
 # and then point ath the application.
 assign [class="Slack"] $w10
-assign [class="Google-chrome"] $w6
-assign [class="Chromium-browser"] $w6
+#assign [class="Google-chrome"] $w6
+#assign [class="Chromium-browser"] $w6
 assign [class="Spotify"] $wF10
 
 # 
@@ -244,10 +244,10 @@ mode "resize" {
         bindsym ae resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -378,11 +378,11 @@ exec_always --no-startup-id xinput set-prop " ETPS/2 Elantech Touchpad" "Device 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $MINI/i3lock.sh, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $MINI/i3lock.sh && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $MINI/i3lock.sh && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    #bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    #bindsym s exec --no-startup-id $MINI/i3lock.sh && systemctl suspend, mode "default"
+    #bindsym h exec --no-startup-id $MINI/i3lock.sh && systemctl hibernate, mode "default"
+    #bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    #bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
     # back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -398,6 +398,7 @@ exec --no-startup-id nm-applet
 
 # Start desktop wallpaper.
 exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
+#exec_always feh --bg-scale /home/thorgeir/Pictures/gimp/dark_blue_radial_04.png
 
 # Reload the config file for the urxvt terminal.
 exec_always xrdb ~/.Xdefaults
@@ -422,12 +423,17 @@ exec_always xcompmgr -c
 bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
 bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 
-
 #
 # PASTE VIM CONFIG
 #
 bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
+
+bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
+bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
+
+bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
 
 #################
 ## INFORMATION ##

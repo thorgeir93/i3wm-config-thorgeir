@@ -2,6 +2,7 @@
 from i3pystatus import Status
 from custom_status_bar.keyboard_layout import Xkblayout
 from custom_status_bar.battery import BatteryStatus
+from custom_status_bar.mail_inbox import MailInbox
 
 status = Status()
 
@@ -14,6 +15,7 @@ status.register("clock",
         format="%a %-d %b %H:%M:%S",)
 
 status.register(BatteryStatus)
+status.register(MailInbox)
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -30,15 +32,22 @@ status.register("runwatch",
     path="/var/run/dhclient*.pid",)
 
 # Note: the network module requires PyPI package netifaces
-status.register("network",
-    interface="wlp3s0",
-    format_up="wifi: {v4cidr} {kbs} MB/s ",
-    divisor=1048576,
-    round_size=2,
-    )
+#status.register("network",
+#    interface="wlp3s0",
+#    format_up="wifi: {v4cidr} {kbs} MB/s ",
+#    divisor=1048576,
+#    round_size=2,
+#    )
+
+#status.register("network",
+#    interface="enp0s31f6",
+#    format_up="Ethernet: {v4cidr} {kbs} MB/s ",
+#    divisor=1048576,
+#    round_size=2,
+#    )
 
 status.register("network",
-    interface="enp0s31f6",
+    interface="eth0",
     format_up="Ethernet: {v4cidr} {kbs} MB/s ",
     divisor=1048576,
     round_size=2,
@@ -47,10 +56,10 @@ status.register("network",
 # Shows pulseaudio default sink volume
 #
 # Note: requires libpulseaudio from PyPI
-#status.register("pulseaudio",
-#    format="♪{volume}",)
-status.register("alsa",
+status.register("pulseaudio",
     format="♪{volume}",)
+#status.register("alsa",
+#    format="♪{volume}",)
 
 
 
