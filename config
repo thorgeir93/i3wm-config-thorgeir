@@ -21,7 +21,8 @@ set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace Display 7
+#font pango:monospace Display 1
+font pango:monospace Display 1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -39,7 +40,10 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Shift+Return exec /usr/bin/chromium-browser --explicitly-allowed-ports=6668 --proxy-pac-url="http://jira-proxy.mordor.local/proxy.pac" --app=https://google.com 
+#bindsym $mod+Shift+Return exec google-chrome --explicitly-allowed-ports=6668 --proxy-pac-url="http://jira-proxy.mordor.local/proxy.pac" --app=https://google.com 
 
+#
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -60,10 +64,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -72,10 +76,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
 
 # log out
 #bindsym $mod+p exec i3lock
@@ -199,15 +203,14 @@ workspace $wF3 output $screen_2
 workspace $wF4 output $screen_2
 
 #exec --no-startup-id "i3-msg 'workspace F10:Spotify; append_layout /home/thorgeir/.config/i3/workspace_F1.json'"
-#
-# Application workspaces  #
-#assign [class="URxvt"] $w1
-#assign [class="google-chrome"] $w2
 
-#assign [class="Liferea|Firefox|Meld|libreoffice-calc|Calligrasheets"] $WS2
-#assign [class="Geany|Pcmanfm|^Gimp$|Inkscape|URxvt"] $WS3
-#assign [window_role="^gimp$"] $WS3
-#assign [instance="Steam"] $WS4
+# Find out the class name by running `xprop`
+# and then point ath the application.
+#assign [class="Slack"] $w10
+#assign [class="Google-chrome"] $w6
+#assign [class="Chromium-browser"] $w6
+assign [class="Spotify"] $wF10
+
 # 
 # open specific programs in specific workspace
 #
@@ -340,7 +343,9 @@ bindsym $mod+i exec `xcalib -invert -alter`
 ## WINDOW
 ##
 # To disable the header.
-#new_window pixel
+#new_window pixel 1
+new_window normal 0 px
+#hide_edge_borders smart
 
 
 ######################
@@ -361,9 +366,11 @@ bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 ## COLORS ##
 set $main-theme-color #305054
 #set $bg-color #223355
+#set $bg-color #002233
 set $bg-color #660000
 set $bd-color $bg-color
-set $title-border #005577
+#set $title-border #005577
+set $title-border #660000
 set $unfocus  $bg-color
 set $UF_border $bg-color
 set $child_brdr $UF_border
@@ -421,7 +428,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id i3-msg "exec xmodmap ~/.speedswapper"
 
 # Start desktop wallpaper.
-exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
+exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
 
 # Reload the config file for the urxvt terminal.
 exec_always xrdb ~/.Xdefaults
@@ -451,6 +458,8 @@ bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 # PASTE VIM CONFIG
 #
 bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
+
+bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
 #################
@@ -458,3 +467,5 @@ bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym $mod+Alt_L+b exec "bash /home/thorgeir/.config/i3/microprograms/notify_battery.sh"
 #bindcode 133+64+56 exec /home/thorgeir/.config/i3/microprograms/notify_battery.sh
 #notify-send -h string:bgcolor:#222222 -h string:fgcolor:#ff4444 "AMMA"
+#
+#

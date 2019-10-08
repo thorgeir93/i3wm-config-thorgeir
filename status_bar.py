@@ -2,6 +2,7 @@
 from i3pystatus import Status
 from custom_status_bar.keyboard_layout import Xkblayout
 from custom_status_bar.battery import BatteryStatus
+from custom_status_bar.caps_lock import CapsOnStatus 
 
 status = Status()
 
@@ -99,5 +100,7 @@ status.register("alsa",
 #status.register("disk",
 #    path="/",
 #    format="/ {avail}",)
+
+status.register(CapsOnStatus)
 
 status.run()

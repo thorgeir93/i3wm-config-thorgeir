@@ -1,4 +1,31 @@
 #!/bin/bash
+
+acpi_path=/sys/class/backlight/intel_backlight
+max_brightness=$(cat ${acpi_path}/max_brightness)
+current_brightness=$(cat ${acpi_path}/brightness)
+scale=50
+
+echo "Max brightness = [$max_brightness]"
+echo "Current brightness = [$current_brightness]"
+
+if [[ $1 == "UP" ]]; then
+    current_brightness=$((current_brightness + scale))
+    brightness_path=${acpi_path}/brightness
+    echo "Current brightness = [$current_brightness]"
+    echo "set brightness in [$brightness_path]"
+    sudo bash -c "echo $current_brightness > $brightness_path"
+
+elif [[ $1 == "DOWN" ]]; then
+    current_brightness=$((current_brightness - scale))
+    echo "Current brightness = [$current_brightness]"
+    sudo bash -c "echo $current_brightness > ${acpi_path}/brightness"
+else
+    echo "Something is missing ..."
+    echo "Pass in either DOWN or UP argument."
+fi 
+
+exit 0
+
 max_brightness=1.0
 current_brightness=`xrandr --verbose | grep -m 1 -i brightness | cut -f2 -d ' '`
 scale=0.05

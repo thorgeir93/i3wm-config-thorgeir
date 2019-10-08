@@ -30,13 +30,23 @@ class Xkblayout(IntervalModule):
         kblayout = self.kblayout()
 
         full_text = self.format.format(name=kblayout)
+
+        color = "#ffff00"
+
+        if full_text.lower() == 'us':
+            color = '#00ff00'
+
+        if full_text.lower() == 'is':
+            color = '#ff0000'
+
         if self.uppercase:
             full_text = full_text.upper()
 
+        full_text = u'■'*30
+
         self.output = {
             "full_text": full_text,
-            "color": "#ffffff"
-        
+            "color": color
         }
 
     def change_layout(self):
