@@ -144,7 +144,8 @@ bindsym $mod+6 workspace $w6;  exec `xcalib -clear -alter`
 bindsym $mod+7 workspace $w7;  exec `xcalib -clear -alter`
 bindsym $mod+8 workspace $w8;  exec `xcalib -clear -alter`
 bindsym $mod+9 workspace $w9;  exec `xcalib -clear -alter`
-bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
+#bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
+bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter`
 bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
 bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
 bindsym $mod+F3 workspace $wF3; exec `xcalib -clear -alter`
@@ -183,24 +184,24 @@ set $screen_3 DP-1
 
 #set $user `uname -n`
 
-workspace $w1 output $screen_1
-workspace $w2 output $screen_1
-workspace $w3 output $screen_1
-workspace $w4 output $screen_1
-workspace $w5 output $screen_1
-
-workspace $w6 output $screen_2
-workspace $w7 output $screen_2
-workspace $w8 output $screen_3
-workspace $w9 output $screen_2
-workspace $w10 output $screen_3
-
-#workspace $w10 output $screen_2
-workspace $wF1 output $screen_1
-workspace $wF2 output $screen_1
-
-workspace $wF3 output $screen_2
-workspace $wF4 output $screen_2
+##workspace $w1 output $screen_1
+##workspace $w2 output $screen_1
+##workspace $w3 output $screen_1
+##workspace $w4 output $screen_1
+##workspace $w5 output $screen_1
+##
+##workspace $w6 output $screen_2
+##workspace $w7 output $screen_2
+##workspace $w8 output $screen_3
+##workspace $w9 output $screen_2
+##workspace $w10 output $screen_3
+##
+###workspace $w10 output $screen_2
+##workspace $wF1 output $screen_1
+##workspace $wF2 output $screen_1
+##
+##workspace $wF3 output $screen_2
+##workspace $wF4 output $screen_2
 
 #exec --no-startup-id "i3-msg 'workspace F10:Spotify; append_layout /home/thorgeir/.config/i3/workspace_F1.json'"
 
@@ -266,7 +267,7 @@ bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     #font pango:FontAwesome 7, FontAwesome 7
     font pango:monospace 7.5
-    status_command      python3.4 /home/thorgeir/.config/i3/status_bar.py
+    status_command      python3 /home/thorgeir/.config/i3/status_bar.py
     position            bottom
     workspace_buttons   yes
 }
@@ -429,9 +430,9 @@ exec --no-startup-id nm-applet
 
 # Start desktop wallpaper.
 #<<<<<<< HEAD
-exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
+#exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
 #=======
-#exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
+exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
 #exec_always feh --bg-scale /home/thorgeir/Pictures/gimp/dark_blue_radial_04.png
 
 # Reload the config file for the urxvt terminal.
