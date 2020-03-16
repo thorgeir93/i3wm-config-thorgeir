@@ -358,7 +358,7 @@ new_window normal 0 px
 # foucused program
 
 #bindsym $mod+Shift+Return exec $MINI/open_urxvt.sh
-bindsym $mod+Shift+Return exec chromium-browser --app=http://duckduckgo.com
+bindsym $mod+Shift+Return exec chromium-browser --app=http://google.com
 bindsym --release Print exec --no-startup-id python /home/thorgeir/.config/i3/screenshot.py
 bindsym $mod+Shift+m exec $MINI/kill_mysql-workbench.sh
 #bindsym Print exec $MINI/screenshot_grap.sh
@@ -463,12 +463,18 @@ bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 #
 bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 
-bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+#bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
 bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
 bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
+bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
+bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
+bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
+
+bindsym Ctrl+Shift+7 exec --no-startup-id "bash $MINI/installer_at_cuckoo_init.sh 10.117.57."
+bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
 
 bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
 
@@ -479,3 +485,5 @@ bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
 #notify-send -h string:bgcolor:#222222 -h string:fgcolor:#ff4444 "AMMA"
 #
 #
+#fake-outputs 1920x1080+0-100,1920x1200+1920+0,1920x1200+3840+0
+#fake-outputs 3840x1080+0+0
