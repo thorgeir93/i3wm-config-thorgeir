@@ -10,6 +10,8 @@ bindsym --release Print exec --no-startup-id screenshot.py
 import os
 from subprocess import Popen, PIPE
 from tempfile import NamedTemporaryFile
+from datetime import datetime
+import time
 
 SCREENSHOT_UTILITY = '/usr/bin/scrot -s' # /usr/bin/import
 
@@ -21,8 +23,8 @@ def feed_xclipboard(str):
 def import_screenshot():
     filename = NamedTemporaryFile(
         suffix='.png',
-        prefix='screenshot_',
-        dir = os.path.expanduser('~/Pictures'),
+        prefix='screenshot_{0}_'.format(time.strftime("%Y%m%dT%H%M%S")),
+        dir = os.path.expanduser('~/Pictures/screenshots'),
         delete=False).name
     p = Popen(SCREENSHOT_UTILITY + " " + filename, shell=True)
     sts = os.waitpid(p.pid, 0)[1]
