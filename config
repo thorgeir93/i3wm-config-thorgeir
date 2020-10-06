@@ -179,8 +179,8 @@ bindsym $mod+Shift+F10 move container to workspace $wF10
 #set $screen_3 DP-1
 
 # Covid-19 setup (docker station).
-set $screen_1 DP-2-1
-set $screen_2 DP-2-2
+set $screen_1 DP-2-2
+set $screen_2 DP-2-1
 set $screen_3 eDP-1
 
 #set $screen_1 exec `bash $MINI/screen_1.sh"`
