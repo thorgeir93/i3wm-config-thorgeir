@@ -120,11 +120,8 @@ set $w6 "6"
 set $w7 "7"
 set $w8 "8"
 set $w9 "9"
+
 set $w10 "0:slack"
-set $wF1 "F1"
-set $wF2 "F2"
-set $wF3 "F3"
-set $wF4 "F4"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
@@ -146,10 +143,10 @@ bindsym $mod+8 workspace $w8;  exec `xcalib -clear -alter`
 bindsym $mod+9 workspace $w9;  exec `xcalib -clear -alter`
 #bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
 bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter`
-bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
-bindsym $mod+F3 workspace $wF3; exec `xcalib -clear -alter`
-bindsym $mod+F4 workspace $wF4; exec `xcalib -clear -alter`
+#bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
+#bindsym $mod+F3 workspace $wF3; exec `xcalib -clear -alter`
+#bindsym $mod+F4 workspace $wF4; exec `xcalib -clear -alter`
 bindsym $mod+F10 workspace $wF10; exec `xcalib -clear -alter`
 
 # move focused container to workspace
@@ -164,10 +161,10 @@ bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+9 move container to workspace $w9 
 bindsym $mod+Shift+0 move container to workspace $w10 
 
-bindsym $mod+Shift+F1 move container to workspace $wF1 
-bindsym $mod+Shift+F2 move container to workspace $wF2 
-bindsym $mod+Shift+F3 move container to workspace $wF3
-bindsym $mod+Shift+F4 move container to workspace $wF4 
+#bindsym $mod+Shift+F1 move container to workspace $wF1 
+#bindsym $mod+Shift+F2 move container to workspace $wF2 
+#bindsym $mod+Shift+F3 move container to workspace $wF3
+#bindsym $mod+Shift+F4 move container to workspace $wF4 
 bindsym $mod+Shift+F10 move container to workspace $wF10 
 
 
@@ -278,7 +275,7 @@ bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     #font pango:FontAwesome 7, FontAwesome 7
     font pango:monospace 7.5
-    status_command      python3.4 /home/thorgeir/.config/i3/status_bar.py
+    status_command      python3.5 /home/thorgeir/.config/i3/status_bar.py
     position            bottom
     workspace_buttons   yes
 }
@@ -304,10 +301,12 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 set Master 2dB+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 set Master 2dB-
 bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle
 
+# UPDATE: Fri Sep 11 08:48:24 UTC 2020)
+#   changed the -c 0 to -c 1
 # increase sound volume (for work-laptop)
-bindsym $mod+F8 exec --no-startup-id amixer -c 0 set Master 2dB+  
+bindsym $mod+F8 exec --no-startup-id amixer -c 1 set Master 2dB+  
 # decrease sound volume (for work-laptop)
-bindsym $mod+F7 exec --no-startup-id amixer -c 0 set Master 2dB-
+bindsym $mod+F7 exec --no-startup-id amixer -c 1 set Master 2dB-
 bindsym $mod+F5 exec --no-startup-id amixer -D pulse set Master 1+ toggle
 
 #
@@ -440,9 +439,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id i3-msg "exec xmodmap ~/.speedswapper"
 
 # Start desktop wallpaper.
-#<<<<<<< HEAD
-#exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
-#=======
+#exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
 exec_always feh --bg-scale /home/thorgeir/git/hub/thorgeir/wallpapers/dark_gray_grainy_texture.jpg
 #exec_always feh --bg-scale /home/thorgeir/Pictures/gimp/dark_blue_radial_04.png
 
@@ -466,8 +463,9 @@ exec_always xcompmgr -c
 #############
 # Setxkbmap #
 #bindsym $mod+Shift+u exec setxkbmap us
-bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
-bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
+bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang_toggle.sh"
+#bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
+#bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 
 #
 # PASTE VIM CONFIG
