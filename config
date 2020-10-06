@@ -120,12 +120,8 @@ set $w6 "6"
 set $w7 "7"
 set $w8 "8"
 set $w9 "9"
-set $w10 "0:Invert"
-#set $wF1 "F1"
-#set $wF2 "F2"
-#set $wF3 "F3"
-# Commented out (Thu Sep  3 10:42:28 UTC 2020) to be able to use alt+f4 to close window in Windows 10.
-#set $wF4 "F4"
+
+set $w10 "0:slack"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
@@ -175,9 +171,14 @@ bindsym $mod+Shift+F10 move container to workspace $wF10
 #set $screen_1 LVDS1
 #set $screen_2 HDMI1
 
-set $screen_1 HDMI-1
-set $screen_2 HDMI-3
-set $screen_3 DP-1
+#set $screen_1 HDMI-1
+#set $screen_2 HDMI-3
+#set $screen_3 DP-1
+
+# Covid-19 setup (docker station).
+set $screen_1 DP-2-1
+set $screen_2 DP-2-2
+set $screen_3 eDP-1
 
 #set $screen_1 exec `bash $MINI/screen_1.sh"`
 #set $screen_2 exec `bash $MINI/screen_2.sh`
@@ -185,25 +186,31 @@ set $screen_3 DP-1
 
 #set $user `uname -n`
 
-##workspace $w1 output $screen_1
-##workspace $w2 output $screen_1
-##workspace $w3 output $screen_1
-##workspace $w4 output $screen_1
-##workspace $w5 output $screen_1
-##
-##workspace $w6 output $screen_2
-##workspace $w7 output $screen_2
-##workspace $w8 output $screen_3
-##workspace $w9 output $screen_2
-##workspace $w10 output $screen_3
-##
-###workspace $w10 output $screen_2
-##workspace $wF1 output $screen_1
-##workspace $wF2 output $screen_1
-##
-##workspace $wF3 output $screen_2
-##workspace $wF4 output $screen_2
+workspace $w1 output $screen_1
+workspace $w2 output $screen_1
+workspace $w3 output $screen_3
+workspace $w4 output $screen_1
+workspace $w5 output $screen_1
 
+workspace $w6 output $screen_2
+workspace $w7 output $screen_2
+workspace $w8 output $screen_1
+workspace $w9 output $screen_1
+workspace $w10 output $screen_1
+
+#workspace $w10 output $screen_2
+workspace $wF1 output $screen_1
+workspace $wF2 output $screen_1
+
+workspace $wF3 output $screen_2
+workspace $wF4 output $screen_2
+
+workspace $wF10 output $screen_1
+
+# start applications on specific workspaces when i3 starts
+exec --no-startup-id i3-msg 'workspace "0:slack"; exec /usr/bin/slack'
+exec --no-startup-id i3-msg 'workspace F10:Spotify; exec /usr/bin/spotify'
+exec --no-startup-id i3-msg 'workspace $w7; exec /usr/bin/urxvt -e vim gitlab/todo_list/TODO.txt'
 #exec --no-startup-id "i3-msg 'workspace F10:Spotify; append_layout /home/thorgeir/.config/i3/workspace_F1.json'"
 
 # Find out the class name by running `xprop`
@@ -211,7 +218,7 @@ set $screen_3 DP-1
 #assign [class="Slack"] $w10
 #assign [class="Google-chrome"] $w6
 #assign [class="Chromium-browser"] $w6
-assign [class="Spotify"] $wF10
+#assign [class="Spotify"] $wF10
 
 # 
 # open specific programs in specific workspace
@@ -273,7 +280,7 @@ bar {
     workspace_buttons   yes
 }
 
-bindsym $mod+shift+s exec i3lock -c 000000 && exec systemctl suspend
+#bindsym $mod+shift+s exec i3lock -c 000000 && exec systemctl suspend
 
 ##########################
 ## Pulse Audio controls ##
@@ -432,11 +439,8 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id i3-msg "exec xmodmap ~/.speedswapper"
 
 # Start desktop wallpaper.
-#<<<<<<< HEAD
-#exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/2.jpg
-#=======
 #exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
-exec_always feh --bg-scale /home/thorgeir/Pictures/wallpapers/12.jpg
+exec_always feh --bg-scale /home/thorgeir/git/hub/thorgeir/wallpapers/dark_gray_grainy_texture.jpg
 #exec_always feh --bg-scale /home/thorgeir/Pictures/gimp/dark_blue_radial_04.png
 
 # Reload the config file for the urxvt terminal.
@@ -471,15 +475,16 @@ bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
-bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
-bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
-bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
-bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
-bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
-bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
-
-bindsym Ctrl+Shift+7 exec --no-startup-id "bash $MINI/installer_at_cuckoo_init.sh 10.117.57."
-bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
+#bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
+#bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+#bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
+#bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
+#bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
+#bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
+#
+#bindsym Ctrl+Shift+7 exec --no-startup-id "bash $MINI/installer_at_cuckoo_init.sh 10.117.57."
+#bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
+#bindsym Ctrl+Shift+9 exec --no-startup-id "bash $MINI/remove_users.sh 10"
 
 bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
 
@@ -492,3 +497,4 @@ bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
 #
 #fake-outputs 1920x1080+0-100,1920x1200+1920+0,1920x1200+3840+0
 #fake-outputs 3840x1080+0+0
+

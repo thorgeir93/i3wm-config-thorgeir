@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from i3pystatus import IntervalModule
 import subprocess
 import os
@@ -39,6 +40,7 @@ class BatteryStatus(IntervalModule):
             "DIS": "↓",
             "CHA": "↑",
             "FUL": "=",
+            "UNK": "x",
         }
 
         file_status = os.path.join(self.base_path, self.battery_folder, self.status)
@@ -49,7 +51,7 @@ class BatteryStatus(IntervalModule):
         except FileNotFoundError:
             res = 'FULL' 
 
-        symbol = status[ res[0:3].upper() ]
+        symbol = status[res[0:3].upper()]
         
         full_text = self.format.format(symbol=symbol, battery=str(num))
 
