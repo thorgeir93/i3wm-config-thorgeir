@@ -275,7 +275,7 @@ bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     #font pango:FontAwesome 7, FontAwesome 7
     font pango:monospace 7.5
-    status_command      python3.5 /home/thorgeir/.config/i3/status_bar.py
+    status_command      python3.4 /home/thorgeir/.config/i3/status_bar.py
     position            bottom
     workspace_buttons   yes
 }
