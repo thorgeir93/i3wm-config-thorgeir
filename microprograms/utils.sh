@@ -18,33 +18,54 @@ exe_cmd () {
     default_sleep_time=1.0
 
     bash_command=${1}; shift
-    sleep_time=${1:-default_sleep_time}; shift
+    sleep_time=${1:-$default_sleep_time}; shift
 
     cmd "${bash_command}" && xdotool key Return && sleep ${sleep_time}
 }
 
-installer_sshi () {
+installer_ssh () {
     # Add the number from the command line to the given ipv4
     # and ssh as user installer with the new ipv4.
     #
     # :param prefix_ipv4: First three octet, e.g. "127.0.1."
     #
 
-    #prefix_ipv4=${1}
+    prefix_ipv4=${1}; shift
 
-    #xdotool key Escape 
-    #xdotool type "dd"
-    #xdotool type "issh installer@${prefix_ipv4}"
-    #xdotool key Escape p
-    #xdotool key Return
-    #sleep 1.5
     xdotool key Escape 
     xdotool type "dd"
-    xdotool type "issh installer@10.117.57."
+    xdotool type "issh installer@${prefix_ipv4}"
     xdotool key Escape p
     xdotool key Return
     sleep 1.5
 }
+
+installer_ssh_login () {
+    exe_cmd "qwerty77"
+    exe_cmd "sudo -i" 1.5
+    exe_cmd "qwerty77"
+    exe_cmd "set -o vi" 0.1
+    exe_cmd "clear" 0.1
+}
+
+installer_setup_cuckoo_session () {
+    exe_cmd "sudo su - cuckoo"
+    exe_cmd "set -o vi"
+    exe_cmd "source ~/venv/bin/activate"
+}
+
+installer_setup_work_session () {
+    xdotool key alt+a colon && xdotool type "setw synchronize-panes off"
+    xdotool key Return && sleep 1
+
+    installer_setup_cuckoo_session
+
+    # Next pane - Go to cuckoo_setup repo.
+    xdotool key alt+a o && sleep 0.2
+
+    exe_cmd "tail -f -n 100 /home/cuckoo/.cuckoo/log/cuckoo.log"
+}
+    
 
 installer_init_ssh_action () {
     exe_cmd "yes"

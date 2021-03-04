@@ -15,5 +15,6 @@ sleep 0.3
 # ret -> retab
 # fdm -> foldmethod
 # se -> set
-xdotool type ":se ts=4 bg=dark fdm=indent et | ret" && \
+# acd -> autochdir
+xdotool type ":se ts=4 bg=dark fdm=indent et acd | ret" && \
     xdotool key Return

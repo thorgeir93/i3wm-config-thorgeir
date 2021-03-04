@@ -122,6 +122,7 @@ set $w8 "8"
 set $w9 "9"
 
 set $w10 "0:slack"
+set $wF2 "F2:Spotify"
 set $wF10 "F10:Spotify"
 
 # switch to workspace
@@ -144,7 +145,7 @@ bindsym $mod+9 workspace $w9;  exec `xcalib -clear -alter`
 #bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter -display :0.0 && xcalib -contrast 90 -invert -alter -display :0.0`
 bindsym $mod+0 workspace $w10;  exec `xcalib -clear -alter`
 #bindsym $mod+F1 workspace $wF1; exec `xcalib -clear -alter -display :0.1`
-#bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
+bindsym $mod+F2 workspace $wF2; exec `xcalib -clear -alter -display :0.1`
 #bindsym $mod+F3 workspace $wF3; exec `xcalib -clear -alter`
 #bindsym $mod+F4 workspace $wF4; exec `xcalib -clear -alter`
 bindsym $mod+F10 workspace $wF10; exec `xcalib -clear -alter`
@@ -162,7 +163,7 @@ bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10 
 
 #bindsym $mod+Shift+F1 move container to workspace $wF1 
-#bindsym $mod+Shift+F2 move container to workspace $wF2 
+bindsym $mod+Shift+F2 move container to workspace $wF2 
 #bindsym $mod+Shift+F3 move container to workspace $wF3
 #bindsym $mod+Shift+F4 move container to workspace $wF4 
 bindsym $mod+Shift+F10 move container to workspace $wF10 
@@ -194,7 +195,7 @@ workspace $w5 output $screen_1
 
 workspace $w6 output $screen_2
 workspace $w7 output $screen_2
-workspace $w8 output $screen_1
+workspace $w8 output $screen_2
 workspace $w9 output $screen_1
 workspace $w10 output $screen_1
 
@@ -203,22 +204,29 @@ workspace $wF1 output $screen_1
 workspace $wF2 output $screen_1
 
 workspace $wF3 output $screen_2
-workspace $wF4 output $screen_2
+#workspace $wF4 output $screen_2
 
 workspace $wF10 output $screen_1
 
 # start applications on specific workspaces when i3 starts
-exec --no-startup-id i3-msg 'workspace "0:slack"; exec /usr/bin/slack'
-exec --no-startup-id i3-msg 'workspace F10:Spotify; exec /usr/bin/spotify'
-exec --no-startup-id i3-msg 'workspace $w7; exec /usr/bin/urxvt -e vim gitlab/todo_list/TODO.txt'
+#exec --no-startup-id i3-msg 'workspace "0:slack"; exec /usr/bin/slack'
+#exec --no-startup-id i3-msg 'workspace F10:Spotify; exec /usr/bin/spotify'
+#exec --no-startup-id i3-msg 'workspace $w7; exec /usr/bin/urxvt -e vim -n ~/git/lab/thorgeir/worklogs/worklogs/todo.log'
+#exec --no-startup-id i3-msg 'exec /home/thorgeir/.config/i3/microprograms/set_monitors.sh'
+
 #exec --no-startup-id "i3-msg 'workspace F10:Spotify; append_layout /home/thorgeir/.config/i3/workspace_F1.json'"
 
 # Find out the class name by running `xprop`
 # and then point ath the application.
-#assign [class="Slack"] $w10
+assign [class="Slack"] $w10
 #assign [class="Google-chrome"] $w6
-#assign [class="Chromium-browser"] $w6
-#assign [class="Spotify"] $wF10
+#assign [class="Chromium-browser"] $w10
+#assign [class="Spotify"] $wF2
+
+exec --no-startup-id i3-msg 'sleep 1; workspace 0:slack; exec /usr/bin/chromium-browser'
+exec --no-startup-id i3-msg 'workspace 0:slack; exec /usr/bin/slack'
+#exec --no-startup-id i3-msg 'workspace F10:Spotify; exec /usr/bin/spotify'
+exec --no-startup-id i3-msg 'exec /home/thorgeir/.config/i3/microprograms/set_monitors.sh'
 
 # 
 # open specific programs in specific workspace
@@ -447,7 +455,7 @@ exec_always feh --bg-scale /home/thorgeir/git/hub/thorgeir/wallpapers/dark_gray_
 exec_always xrdb ~/.Xdefaults
 
 # Change the keyboard language to english.
-exec "bash $MINI/lang.sh us"
+exec "bash $MINI/lang.sh is"
 
 # is a composite manager (for windows)
 # capable of rednering drop shadow and
@@ -463,9 +471,9 @@ exec_always xcompmgr -c
 #############
 # Setxkbmap #
 #bindsym $mod+Shift+u exec setxkbmap us
-bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang_toggle.sh"
-#bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
-#bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
+#bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang_toggle.sh"
+bindsym $mod+Shift+u exec --no-startup-id "bash $MINI/lang.sh us"
+bindsym $mod+Shift+i exec --no-startup-id "bash $MINI/lang.sh is"
 
 #
 # PASTE VIM CONFIG
@@ -476,14 +484,14 @@ bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
 #bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
-#bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
 #bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
 #bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
 #bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
 #
 #bindsym Ctrl+Shift+7 exec --no-startup-id "bash $MINI/installer_at_cuckoo_init.sh 10.117.57."
-#bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
+bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
 #bindsym Ctrl+Shift+9 exec --no-startup-id "bash $MINI/remove_users.sh 10"
 
 bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"
