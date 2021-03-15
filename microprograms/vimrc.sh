@@ -10,7 +10,11 @@
 # Just to be sure the commands will not 
 # be execute alongside mines.
 sleep 0.3
-xdotool key colon s e t space t s equal 4 Return 
-xdotool key colon s e t space e x p a n d t a b Return 
-xdotool key colon r e t a b Return 
-xdotool key colon s e t space b g equal d a r k Return
+
+# et -> expandtab
+# ret -> retab
+# fdm -> foldmethod
+# se -> set
+# acd -> autochdir
+xdotool type ":se ts=4 bg=dark fdm=indent et acd | ret" && \
+    xdotool key Return
