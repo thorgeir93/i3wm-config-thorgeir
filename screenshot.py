@@ -24,7 +24,7 @@ def import_screenshot():
     filename = NamedTemporaryFile(
         suffix='.png',
         prefix='screenshot_{0}_'.format(time.strftime("%Y%m%dT%H%M%S")),
-        dir = os.path.expanduser('~/Pictures/screenshots'),
+        dir = os.path.expanduser('~/media/screenshots'),
         delete=False).name
     p = Popen(SCREENSHOT_UTILITY + " " + filename, shell=True)
     sts = os.waitpid(p.pid, 0)[1]

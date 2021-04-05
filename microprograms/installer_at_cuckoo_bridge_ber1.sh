@@ -11,20 +11,20 @@ sleep 0.3
 # production-av-cuckoo-bridge-ber1-001.ber1.cynet
 xdotool key Escape
 xdotool key i s s h space i n s t a l l e r at 1 0 period 1 0 5 period 5 4 period 5 1 Escape
-xdotool key Escape p
+#lxdotool key Escape p
 xdotool key Return
-sleep 1.5
+sleep 3
 
 xdotool key q w e r t y 7 7
 xdotool key Return
-sleep 1
+sleep 2
 
 xdotool key s u d o space minus i
 xdotool key Return
-sleep 0.5
+sleep 2
 xdotool key q w e r t y 7 7
 xdotool key Return
-sleep 0.5
+sleep 2
 
 xdotool key s e t space minus o space v i
 xdotool key Return
