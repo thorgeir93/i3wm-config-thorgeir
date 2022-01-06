@@ -223,7 +223,7 @@ workspace $wF10 output $screen_1
 
 # Find out the class name by running `xprop`
 # and then point ath the application.
-assign [class="Slack"] $w10
+#assign [class="Slack"] $w10
 #assign [class="Google-chrome"] $w6
 #assign [class="Chromium-browser"] $w10
 #assign [class="Spotify"] $wF2
@@ -488,15 +488,16 @@ bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
-#bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
+bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
 bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ash1.sh"
 #bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
-#bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
+bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
 #bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
 #bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
 #
 #bindsym Ctrl+Shift+7 exec --no-startup-id "bash $MINI/installer_at_cuckoo_init.sh 10.117.57."
-bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
+#bindsym Ctrl+Shift+8 exec --no-startup-id "bash $MINI/installer_at_cuckoo.sh 10.117.57."
 #bindsym Ctrl+Shift+9 exec --no-startup-id "bash $MINI/remove_users.sh 10"
 
 bindsym Ctrl+Shift+w exec --no-startup-id "bash $MINI/vim_save_and_run.sh"

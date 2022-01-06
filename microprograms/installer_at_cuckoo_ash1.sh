@@ -12,6 +12,9 @@ source /home/thorgeir/.config/i3/microprograms/utils.sh
 # be execute alongside mines.
 sleep 0.3
 
+get_user_permission "ASH1 login"
 installer_ssh "10.117.57."
 installer_ssh_login
+
+get_user_permission "work session setup"
 installer_setup_work_session

@@ -23,6 +23,18 @@ exe_cmd () {
     cmd "${bash_command}" && xdotool key Return && sleep ${sleep_time}
 }
 
+installer_bridge_ssh () {
+    #
+    # :param ipv4: IPv4 address of the bridge.
+    #
+    ipv4=${1}; shift
+
+    xdotool key Escape 
+    xdotool type "issh installer@${ipv4}"
+    xdotool key Return
+    sleep 1.5
+}
+
 installer_ssh () {
     # Add the number from the command line to the given ipv4
     # and ssh as user installer with the new ipv4.
@@ -54,18 +66,53 @@ installer_setup_cuckoo_session () {
     exe_cmd "source ~/venv/bin/activate"
 }
 
-installer_setup_work_session () {
+tmux_sync_off () {
     xdotool key alt+a colon && xdotool type "setw synchronize-panes off"
     xdotool key Return && sleep 1
+}
+    
+tmux_next_pane () {
+    xdotool key alt+a o && sleep 0.2
+}
+
+bridge_setup_work_session () {
+    tmux_sync_off
 
     installer_setup_cuckoo_session
 
-    # Next pane - Go to cuckoo_setup repo.
-    xdotool key alt+a o && sleep 0.2
+    exe_cmd "df -h"
 
-    exe_cmd "tail -f -n 100 /home/cuckoo/.cuckoo/log/cuckoo.log"
-}
+    # Next pane - Go to cuckoo_setup repo.
+    tmux_next_pane
+    exe_cmd "tail -f -n 100 /home/cuckoo/.cuckoo/log/distributed.log"
+
+    tmux_next_pane
+    exe_cmd "cd /var/data/gitlab/sandbox_tools/sandbox_cron_jobs"
+
+    tmux_next_pane
+    exe_cmd "service supervisor status"
     
+}
+
+installer_setup_work_session () {
+    tmux_sync_off
+
+    installer_setup_cuckoo_session
+
+    exe_cmd "df -h"
+    exe_cmd "vboxmanage list vms"
+
+    # Next pane - Go to cuckoo_setup repo.
+    tmux_next_pane
+    exe_cmd "tail -f -n 100 /home/cuckoo/.cuckoo/log/cuckoo.log"
+
+    tmux_next_pane
+    exe_cmd "cd /var/data/gitlab/cuckoo_setup/"
+    exe_cmd "bash health_check.sh"
+
+    tmux_next_pane
+    exe_cmd "service supervisor status"
+}
 
 installer_init_ssh_action () {
     exe_cmd "yes"
@@ -83,4 +130,24 @@ init_cuckoo_setup_repo () {
     xdotool type "cd /root/sandbox_setup && bash setup_cuckoo_host.sh" && xdotool key Return
     xdotool type "cd /var/data/gitlab/cuckoo_setup" && xdotool key Return
 }
+
+exit_on_status () {
+    status=${1}
+
+    if [[ $status -eq 1 ]];
+        then exit $status
+    fi
+}
+
+gui_user_prompt () {
+    action=${1}; shift
+    xmessage -buttons Yes:0,No:1 -default No -nearmouse "Run ${action}?" -timeout 30
+    # use `$?` to get user answer, Yes:0,No:1
+}
+
+get_user_permission () {
+    gui_user_prompt "$@"
+    exit_on_status $?
+}
+
 
