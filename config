@@ -177,9 +177,14 @@ bindsym $mod+Shift+F10 move container to workspace $wF10
 #set $screen_3 DP-1
 
 # Covid-19 setup (docker station).
-set $screen_1 DP-2-2
-set $screen_2 DP-2-1
-set $screen_3 eDP-1
+
+# set $screen_1 DP-2-1
+# set $screen_2 DP-2-2
+# set $screen_3 eDP-1
+
+# Office PC
+set $screen_1 HDMI-3
+set $screen_2 HDMI-1
 
 #set $screen_1 exec `bash $MINI/screen_1.sh"`
 #set $screen_2 exec `bash $MINI/screen_2.sh`
@@ -219,6 +224,7 @@ workspace $wF10 output $screen_1
 # Find out the class name by running `xprop`
 # and then point ath the application.
 assign [class="Slack"] $w1
+#assign [class="Slack"] $w10
 #assign [class="Google-chrome"] $w6
 #assign [class="Chromium-browser"] $w10
 #assign [class="Spotify"] $wF2
@@ -283,7 +289,7 @@ bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     #font pango:FontAwesome 7, FontAwesome 7
     font pango:monospace 7.5
-    status_command      python3.4 /home/thorgeir/.config/i3/status_bar.py
+    status_command      python3.5 /home/thorgeir/.config/i3/status_bar.py
     position            bottom
     workspace_buttons   yes
 }
@@ -483,10 +489,11 @@ bindsym $mod+Shift+v exec --no-startup-id "bash $MINI/vimrc.sh"
 #bindsym Ctrl+Shift+e exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
 #bindsym $mod+Shift+y exec --no-startup-id "xdotool key o"
 
-#bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
+bindsym Ctrl+Shift+1 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_ber1.sh"
 bindsym Ctrl+Shift+2 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1.sh"
+bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ash1.sh"
 #bindsym Ctrl+Shift+3 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3.sh"
-#bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
+bindsym Ctrl+Shift+4 exec --no-startup-id "bash $MINI/installer_at_cuckoo_bridge_c3.sh"
 #bindsym Ctrl+Shift+5 exec --no-startup-id "bash $MINI/installer_at_cuckoo_c3_init.sh"
 #bindsym Ctrl+Shift+6 exec --no-startup-id "bash $MINI/installer_at_cuckoo_ber1_init.sh"
 #
