@@ -9,8 +9,10 @@
 # be execute alongside mines.
 sleep 0.3
 
+source /home/thorgeir/.config/i3/microprograms/utils.sh
+
 get_user_permission "ASH1 login (cuckoo bridge)"
-installer_bridge_ssh "10.117.54.201"
+installer_bridge_ssh "10.117.57.201"
 installer_ssh_login
 
 get_user_permission "work session setup"
