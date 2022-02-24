@@ -12,7 +12,8 @@
 set $USER thorgeir
 set $HOME /home/thorgeir
 set $CONF /home/thorgeir/.config/i3
-set $MINI /home/thorgeir/.config/i3/microprograms
+#set $MINI /home/thorgeir/.config/i3/microprograms
+set $MINI /home/thorgeir/git/lab/thorgeir/ssh_login
 
 #############
 #MAIN BUTTON#
