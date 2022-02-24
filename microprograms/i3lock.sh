@@ -2,7 +2,7 @@
 scrot /tmp/screenlock.png
 mogrify -blur 0x5 /tmp/screenlock.png
 i3lock --config=~/.config/i3lock-fancier/config.ini
-#i3lock -i /tmp/screenlock.png
+i3lock -i /tmp/screenlock.png
 rm /tmp/screenlock.png
 
 ##!/bin/bash
