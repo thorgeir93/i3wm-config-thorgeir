@@ -49,7 +49,7 @@ installer_ssh () {
     xdotool type "issh installer@${prefix_ipv4}"
     xdotool key Escape p
     xdotool key Return
-    sleep 1.5
+    sleep 3 
 }
 
 installer_ssh_login () {

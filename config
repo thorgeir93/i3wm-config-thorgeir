@@ -224,7 +224,7 @@ workspace $wF10 output $screen_1
 
 # Find out the class name by running `xprop`
 # and then point ath the application.
-assign [class="Slack"] $w1
+assign [class="Slack"] $w10
 #assign [class="Slack"] $w10
 #assign [class="Google-chrome"] $w6
 #assign [class="Chromium-browser"] $w10
